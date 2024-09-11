@@ -1,0 +1,5 @@
+node_modules
+dist
+coverage
+src/mock-data
+src/setup.jest.ts

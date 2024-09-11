@@ -1,0 +1,49 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #e5e5e5;
+}
+
+.header-content-wrapper {
+  box-sizing: border-box;
+  width: min(100vw, 1200px);
+  margin-inline: auto;
+  height: 80px;
+  padding-inline: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+}
+
+.main-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.spacer {
+  width: 92px;
+}
+
+.setting-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    height 0.5s ease-out,
+    opacity 0.5s ease-out;
+}
+
+.setting-panel.visible {
+  height: 50px;
+  opacity: 1;
+}

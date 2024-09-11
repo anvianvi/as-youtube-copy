@@ -1,0 +1,43 @@
+<div class="settings-titile">Sorting by:</div>
+
+<div
+  class="settings-like-a-button"
+  (click)="onSortByDateClick()"
+  [class.active-sort-button]="sortService.sortBy === 'date'"
+>
+  <div>date</div>
+  <div class="arrow-box">
+    @if (sortService.sortBy === "date") {
+      <mat-icon>
+        {{
+          sortService.sortOrder === "asc" ? "arrow_upward" : "arrow_downward"
+        }}
+      </mat-icon>
+    }
+  </div>
+</div>
+
+<div
+  class="settings-like-a-button"
+  (click)="onSortByViewsClick()"
+  [class.active-sort-button]="sortService.sortBy === 'views'"
+>
+  <div>count of views</div>
+  <div class="arrow-box">
+    @if (sortService.sortBy === "views") {
+      <mat-icon>
+        {{
+          sortService.sortOrder === "asc" ? "arrow_upward" : "arrow_downward"
+        }}
+      </mat-icon>
+    }
+  </div>
+</div>
+
+<div>by word or sentence</div>
+
+<input
+  class="instant-serch-input"
+  type="text"
+  [(ngModel)]="filterService.filterValue"
+/>

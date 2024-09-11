@@ -1,0 +1,41 @@
+@if (video(); as videoDetails) {
+  <mat-card
+    class="detailed-video-card"
+    [appPublicationDate]="videoDetails.snippet.publishedAt"
+  >
+    <button mat-icon-button class="go-back-button" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <div class="detailed-video-card-container">
+      <div class="detailed-video-card-preview">
+        <img
+          class="detailed-video-card-preview-img"
+          [src]="videoDetails.snippet.thumbnails.default.url"
+          alt="Thumbnails img of video {{ videoDetails.snippet.title }}"
+        />
+      </div>
+      <mat-card-content class="detailed-video-card-description-block">
+        <div class="dvcdb-header">
+          <mat-card-title class="dvcdb-header-title">
+            {{ videoDetails.snippet.title }}
+          </mat-card-title>
+          <mat-card-subtitle class="dvcdb-header-date">
+            {{ videoDetails.snippet.publishedAt | date }}
+          </mat-card-subtitle>
+        </div>
+        <div class="dvcdb-main">
+          <p class="dvcdb-main-title">Description:</p>
+          <p
+            class="dvcdb-main-description"
+            [innerHTML]="videoDetails.snippet.description | formatDescription"
+          ></p>
+          <app-video-statistics-bar
+            [video]="videoDetails"
+          ></app-video-statistics-bar>
+        </div>
+      </mat-card-content>
+    </div>
+  </mat-card>
+} @else {
+  <p>Loading...</p>
+}

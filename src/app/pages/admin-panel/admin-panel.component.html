@@ -1,0 +1,86 @@
+<form [formGroup]="createCardForm" (ngSubmit)="onSubmit()">
+  <h2>Create new card</h2>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title" />
+    @if (createCardForm.get("title")?.hasError("required")) {
+      <mat-error>Please enter a title.</mat-error>
+    }
+    @if (createCardForm.get("title")?.hasError("minlength")) {
+      <mat-error>The title is too short.</mat-error>
+    }
+    @if (createCardForm.get("title")?.hasError("maxlength")) {
+      <mat-error>The title is too long.</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+    @if (createCardForm.get("description")?.hasError("maxlength")) {
+      <mat-error>The description is too long.</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Image Link</mat-label>
+    <input matInput formControlName="imageLink" />
+    @if (createCardForm.get("imageLink")?.hasError("required")) {
+      <mat-error>Please enter a link to the image.</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Video Link</mat-label>
+    <input matInput formControlName="videoLink" />
+    @if (createCardForm.get("videoLink")?.hasError("required")) {
+      <mat-error>Please enter a link to the video.</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Creation Date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="publishedAt" />
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    @if (createCardForm.get("publishedAt")?.hasError("required")) {
+      <mat-error>Please enter a creation date.</mat-error>
+    }
+    @if (createCardForm.get("publishedAt")?.hasError("futureDate")) {
+      <mat-error>The date is invalid.</mat-error>
+    }
+  </mat-form-field>
+
+  <div formArrayName="tags">
+    <mat-chip-set>
+      @for (tag of tags.controls; track tag; let i = $index) {
+        <mat-chip [formGroupName]="i">
+          <input matInput [formControlName]="'tag'" placeholder="Enter tag" />
+          <button matChipRemove (click)="removeTag(i)">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+      }
+      <button
+        mat-stroked-button
+        (click)="addTag()"
+        [disabled]="tags.length >= 5"
+      >
+        Add Tag
+      </button>
+    </mat-chip-set>
+  </div>
+
+  <div class="buttons-container">
+    <button mat-raised-button type="button" (click)="resetForm()">Reset</button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!createCardForm.valid"
+    >
+      Submit
+    </button>
+  </div>
+</form>

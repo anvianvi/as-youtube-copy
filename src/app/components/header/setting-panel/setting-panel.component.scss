@@ -1,0 +1,43 @@
+:host {
+  display: flex;
+  gap: 5px;
+  color: #929292;
+  font-size: 14px;
+}
+
+.settings-panel {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.sorting-button {
+  color: #2f80ed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: underline;
+  cursor: pointer;
+  user-select: none;
+
+  &.active {
+    color: #eb5757;
+  }
+
+  &:nth-child(2) {
+    width: 60px;
+  }
+
+  &:nth-child(3) {
+    width: 130px;
+  }
+}
+
+.instant-search-input {
+  margin-left: 5px;
+  height: 24px;
+  background: #efefef;
+  outline: 0;
+  border: 0;
+  border-radius: 4px;
+}
